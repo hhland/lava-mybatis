@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <!-- <classPathEntry location="F:\repo\ojdbc\ojdbc\6\ojdbc-6.jar"/> -->
+    <classPathEntry location="D:\work\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/>
+    <context id="jc-sys" targetRuntime="MyBatis3">
+        <plugin type="com.nfha.jc.dao.plugin.MgBeanAnnoPlug"/>
+        <plugin type="com.nfha.jc.dao.plugin.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+            <property name="packageName" value="com.nfha.jc.api.param.criteria"/>
+        </plugin>
+        
+        <!-- 生成数据库字段注释及自定义注释 【扩展插件】 -->
+		<!-- <commentGenerator type="com.nfha.jc.dao.plugin.RemarksCommentGenerator">
+			格式化java代码
+			<property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+			格式化XML代码
+       		<property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+       		开启抑制类型的警告信息
+       		<property name="suppressTypeWarnings" value="true"/>
+			生成的Java文件的默认编码
+			<property name="javaFileEncoding" value="UTF-8" />
+			是否去除自动生成的注释 true：是 ： false:否
+			<property name="suppressAllComments" value="true" />
+			是否给实体类生成的注释 true：是 ： 默认为false:否
+           	<property name="addRemarkComments" value="true"/>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>  -->
+		<commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://59.41.70.40:1433;databaseName=JC" userId="sa" password="nfha_505"></jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--基础数据配置-->
+        <!-- 生成模型model的包名和位置 -->
+    	<!-- <javaModelGenerator targetPackage="com.nfha.jc.api.base.entity" targetProject="F:\gen-source">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        &lt;!&ndash; 生成映射文件的包名和位置 &ndash;&gt;
+        <sqlMapGenerator targetPackage="com.nfha.jc.dao.base.sqlmap" targetProject="F:\gen-source">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        &lt;!&ndash; 生成DAO的包名和位置 &ndash;&gt;
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nfha.jc.dao.base.mapper" targetProject="F:\gen-source">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>-->
+
+        <!--业务数据配置-->
+        <!-- 生成模型model的包名和位置 -->
+        <javaModelGenerator targetPackage="com.nfha.jc.api.param.entity" targetProject="jc_dao">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.nfha.jc.dao.param.sqlmap" targetProject="jc_dao">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nfha.jc.dao.param.mapper" targetProject="jc_dao">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+       
+        <!--业务表-->
+       <!--  <table tableName="JC_BIZ_CGAC_JUDGE_TASKLIST" domainObjectName="BizCgacJudgeTasklist"></table>
+        <table tableName="JC_BIZ_DICTATE_ALLOCATE_LIST" domainObjectName="BizDictateAllocateList"></table>
+        <table tableName="JC_BIZ_DICTATE_ALLOCATE_OPRREC" domainObjectName="BizDictateAllocateOprrec"></table>
+        <table tableName="JC_BIZ_DICTATE_CUSM_MNG" domainObjectName="BizDictateCusmMng"></table>
+        <table tableName="JC_BIZ_DICTATE_GRP_MNG" domainObjectName="BizDictateGrpMng"></table>
+        <table tableName="JC_BIZ_DICTATE_ORGMNT_OPRREC" domainObjectName="BizDictateOrgmntOprrec"></table>
+        <table tableName="JC_BIZ_DICTATE_PSEN_MNG" domainObjectName="BizDictatePsenMng"></table>
+        <table tableName="JC_BIZ_DICTATE_SCTOFC_MNG" domainObjectName="BizDictateSctofcMng"></table>
+        <table tableName="JC_BIZ_DIRUND_JUDGE_BILL" domainObjectName="BizDirundJudgeBill"></table>
+        <table tableName="JC_BIZ_ETPS_BASE_INFO" domainObjectName="BizEtpsBaseInfo"></table>
+        <table tableName="JC_BIZ_HC_JOB" domainObjectName="BizHcJob"></table>
+         <table tableName="JC_BIZ_REQCNTBILL_WKOBJ" domainObjectName="BizReqcntbillWkobj"></table>
+        <table tableName="JC_BIZ_REQCNTBILL_GDS" domainObjectName="BizReqcntbillGds"></table>
+        <table tableName="JC_BIZ_REQCNTBILL_HEAD" domainObjectName="BizReqcntbillHead"></table>
+        <table tableName="JC_BIZ_WKOBJ_ENTRY" domainObjectName="BizWkobjEntry"></table>
+        <table tableName="JC_BIZ_REQCNTBILL_WKDMD" domainObjectName="BizReqcntbillWkdmd"></table> -->
+        
+        <!-- 通用表 -->
+        <!-- <table tableName="JC_GNRL_NTC_MESSAGE" domainObjectName="GnrlNtcMessage"></table>
+        <table tableName="JC_GNRL_BIZ_OPRREC" domainObjectName="GnrlBizOprrec"></table>
+        <table tableName="JC_GNRL_BIZ_STATE" domainObjectName="GnrlBizState"></table>
+        <table tableName="JC_GNRL_BIZ_TAG" domainObjectName="GnrlBizTag"></table>
+        <table tableName="JC_GNRL_BKLOG_TASK_SEND" domainObjectName="GnrlBklogTaskSend"></table>
+        <table tableName="JC_GNRL_EMAPVADE_INFO" domainObjectName="GnrlEmapvadeInfo"></table>
+        <table tableName="JC_GNRL_JOBOBJ_VERSION" domainObjectName="GnrlJobobjVersion"></table>
+        <table tableName="JC_GNRL_SEQUENCE_NO" domainObjectName="GnrlSequenceNo"></table>
+        <table tableName="JC_GNRL_TABLE_RL" domainObjectName="GnrlTableRl"></table>
+        <table tableName="JC_GNRL_UPLOADE_FILE" domainObjectName="GnrlUploadeFile"></table> -->
+      
+         <!-- 事项表 -->
+         <!-- <table tableName="JC_ITEM_ACCT_QRY" domainObjectName="ItemAcctQry"></table>
+         <table tableName="JC_ITEM_INSTRUCT_RCRF" domainObjectName="ItemInstructRcrf"></table>
+         <table tableName="JC_ITEM_JOB_PSTP" domainObjectName="ItemJobPstp"></table>
+         <table tableName="JC_ITEM_REGLT_GRPMEB_HIS" domainObjectName="ItemRegltGrpmebHis"></table>
+         <table tableName="JC_ITEM_JOB_TAG" domainObjectName="ItemJobTag"></table>
+         <table tableName="JC_ITEM_OTHER_MATR_EMAPV" domainObjectName="ItemOtherMatrEmapv"></table>
+         <table tableName="JC_ITEM_PRO_IDENTIFY" domainObjectName="ItemProIdentify"></table>
+         <table tableName="JC_ITEM_PRO_TECH_SUPPORT" domainObjectName="ItemProTechSupport"></table>
+         <table tableName="JC_ITEM_URGNT_RPT" domainObjectName="ItemUrgntRpt"></table> -->
+         
+		<!-- 参数表 -->
+        <!-- <table tableName="JC_PARAM_FILE_TYPE" domainObjectName="ParamFileType"></table>
+        <table tableName="JC_PARAM_FILE_STORAGE_DISK_PATH" domainObjectName="ParamFileStorageDiskPath"></table>
+        <table tableName="JC_PARAM_RISKTYPE_RTL_HCJOBTABEL" domainObjectName="ParamRisktypeRtlHcjobtabe"></table>
+        <table tableName="JC_PARAM_TAG_MNG" domainObjectName="ParamTagMng"></table>
+        <table tableName="JC_TEMP_PARAM_ETPS_INFO" domainObjectName="TempParamEtpsInfo"></table> -->
+        
+      	<!-- 标准化作业表 -->
+		<!-- <table tableName="JC_STANDARD_JOB_ANSWER" domainObjectName="StandardJobAnswer"></table>
+        <table tableName="JC_STANDARD_JOB_SHEET" domainObjectName="StandardJobSheet"></table>
+        <table tableName="JC_STANDARD_SERVICE_RECORD" domainObjectName="StandardServiceRecord"></table> -->
+      
+		<!-- 报文和json （表字段有BLOB text字段属性） -->
+        <!-- <table tableName="JC_BIZ_RCV_MSG" domainObjectName="BizRcvMsg">
+        	 <columnOverride column="CNTT" jdbcType="VARCHAR" />
+        	 <columnOverride column="RSP_RSLT" jdbcType="VARCHAR" />
+        </table>
+        <table tableName="JC_BIZ_SD_MSG" domainObjectName="BizSdMsg">
+        	<columnOverride column="CNTT" jdbcType="VARCHAR" />
+        	 <columnOverride column="RSP_RSLT" jdbcType="VARCHAR" />
+        </table> -->
+        <!-- 互联网+ -->
+        <!-- <table tableName="JC_NET_NTC_LAW_WRIT" domainObjectName="NetNtcLawWrit"></table>
+        <table tableName="JC_NET_MATR_BIZ_APPLY" domainObjectName="NetNatrBizApply"></table> -->
+        
+    </context>
+</generatorConfiguration>
