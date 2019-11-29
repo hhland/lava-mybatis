@@ -28,12 +28,10 @@ public interface CurdService {
 
 		/**根据主键进行修改*/
 		int updateByPrimaryKey(Object... record);
-		/**根据主键进行修改(去空)*/
-		int updateByPrimaryKeySelective(Object... record);
+		
 		/**根据具体条件进行修改*/
 		int updateByExample(Object record, Object example);
-		/**根据具体条件进行修改(去空)*/
-		int updateByExampleSelective(Object record, Object example);
+		
 		
 		/**根据主键进行删除*/
 	    int deleteByPrimaryKey(String id, Class cls);
